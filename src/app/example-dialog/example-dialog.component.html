@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Category</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Choose a category</mat-label>
+    <mat-select [(value)]="category">
+      <mat-option *ngFor="let cat of categories" [value] = "cat.value">
+        {{cat.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="category" cdkFocusInitial>Ok</button>
+</div>

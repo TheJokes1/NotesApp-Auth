@@ -1,0 +1,130 @@
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My test page</title>
+  </head>
+  <body>
+    <div fxFlex fxLayout="column" fxLayoutGap="10px" style="height:100vh">
+      <div fxLayout="row wrap">
+          <div fxFlex="30" fxLayout="column" fxFlex.lt-md="100" class= "userbox">
+            <!-- USERS -->
+                <h3>Users:</h3>
+                <div *ngFor="let user of usersList; let i = index">
+                      <!-- <button class= "delButton" title= "delete user and notes" mat-raised-button (click)="DeleteUser(user.name)">Delete</button> -->
+                      <button mat-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="GetNotes(user.name)">Show notes</button>
+                        <button mat-menu-item (click)="DeleteUser(user.name)">Delete User</button>
+                      </mat-menu>
+                      <button class= "userButton" title= "Show notes for this user" mat-button (click)="GetNotes(user.name)">
+                        {{i + 1}} - {{ user.name }}
+                      </button>
+                </div>
+                <br>
+                <form>
+                  <mat-form-field class= 'inputbox-userName'>
+                    <mat-label>New user</mat-label>
+                    <input matInput [(ngModel)]="newUser" name="first">
+                  </mat-form-field>
+                </form>
+                <ng-template [ngIf]="newUser"><button class= "aButton" mat-raised-button (click)="AddUser(newUser)">Add User</button></ng-template>
+                <br>
+        </div>
+          <!-- NOTES -->
+          <div fxFlex="70" fxLayout="column" fxFlex.lt-md="100">
+              <div fxFlex fxLayout='column' class="notesbox">
+                <h3 style="color: blue">Notes: {{currentUser}}</h3>
+                <table>
+                  <col style="width:2%">
+	                <col style="width:1%">
+	                <col style="width:60%">
+                  <thead>
+                  </thead>
+                  <tbody>
+                    <!-- FILTER ROW-->
+                    <tr>
+                      <td> <!-- Filter Categorie -->
+                        <mat-form-field class="mat-label">
+                          <mat-label>Filter on category</mat-label>
+                          <mat-select [(value)]= "selectedCategory" (selectionChange)="filterLongList($event)">
+                            <mat-option *ngFor="let cat of categories" [value] = "cat.value">
+                              {{cat.value}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </td>
+                      <td> <!-- Remove Cat Filter-->
+                        <button class= "rButton" mat-button matTooltip="Remove filters" matTooltipPosition="above"
+                        matTooltipShowDelay= "200" matTooltipHideDelay= "500" (click)="RemoveCatFilter()" >X</button>
+                      </td>
+                      <td col="3"> <!-- Filter Content -->
+                        <mat-form-field>
+                          <mat-label>Filter content</mat-label>
+                          <input hint="Filter content..." matInput [(ngModel)]="searchString" (ngModelChange)="filterLongList($event)" style="font-size: 16;">
+                        </mat-form-field>
+                    </tr>
+                    <!-- NOTES ROW -->
+                    <tr *ngFor="let note of notes; let i = index">
+                        <td> <!-- Categorie -->
+                          <container-element [ngSwitch]="note.category">
+                            <some-element *ngSwitchCase="'Werk'" class="Werk">
+                              <button mat-button (click)="openDialog(note)">{{note.category}}</button>
+                            </some-element>
+                            <some-element *ngSwitchCase="'Privé'" class="Privé">
+                              <button mat-button (click)="openDialog(note)">{{note.category}}</button>
+                            </some-element>
+                            <some-other-element *ngSwitchCase="'Buitenland'" class="Buitenland">
+                              <button mat-button (click)="openDialog(note)">{{note.category}}</button>
+                            </some-other-element>
+                            <some-other-element *ngSwitchCase="'DjangoDjango'" class="DjangoDjango">
+                              <button mat-button (click)="openDialog(note)">{{note.category}}</button>
+                            </some-other-element>
+                            <some-other-element *ngSwitchCase="'Buiten categorie'" class="BuitenCategorie">
+                              <button mat-button (click)="openDialog(note)">{{note.category}}</button>
+                            </some-other-element>
+                            <!-- DEFAULT Case  -->
+                            <some-element *ngSwitchDefault>...</some-element>
+                          </container-element>
+                        </td>
+                        <td>  <!-- MENU -->
+                          <button mat-button [matMenuTriggerFor]="menu">
+                            <mat-icon>more_vert</mat-icon>
+                          </button>
+                          <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="openDialog(note)">Edit category</button>
+                            <button mat-menu-item (click)="EditNote(note)">Edit note</button>
+                            <button mat-menu-item (click)="DeleteNote(note)">Delete note</button>
+                          </mat-menu>
+                        </td>
+                        <td>  <!-- Note content -->
+                          {{i + 1}}. {{note.content}}
+                        </td>
+                    </tr>
+                    <br>
+                    <tr>
+                      <td colspan= "2">
+                      <mat-form-field class= 'inputbox-newNote' style="width: 300px">
+                        <mat-label>New note</mat-label>
+                        <textarea  class= "textArea" cols="20" matInput [(ngModel)]= "newNote"></textarea>
+                      </mat-form-field>
+                      </td>
+                    </tr>
+                    <tr>  
+                      <div fxFlex fxLayout='row'>
+                        <ng-template [ngIf]="newNote && currentUser"><button class= "nButton" mat-raised-button (click)="AddNote(currentUser, newNote)">Save Note</button></ng-template>
+                      </div>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<router-outlet></router-outlet>

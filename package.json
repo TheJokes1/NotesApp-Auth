@@ -1,0 +1,71 @@
+{
+  "name": "notes-app",
+  "version": "0.0.0",
+  "scripts": {
+    "android": "tns run android",
+    "ios": "tns run ios",
+    "mobile": "tns run",
+    "preview": "tns preview",
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~9.0.3",
+    "@angular/cdk": "^9.2.4",
+    "@angular/common": "~9.0.3",
+    "@angular/compiler": "~9.0.3",
+    "@angular/core": "~9.0.3",
+    "@angular/flex-layout": "^9.0.0-beta.31",
+    "@angular/forms": "~9.0.3",
+    "@angular/localize": "~9.0.3",
+    "@angular/material": "^9.2.4",
+    "@angular/platform-browser": "~9.0.3",
+    "@angular/platform-browser-dynamic": "~9.0.3",
+    "@angular/router": "~9.0.3",
+    "@nativescript/schematics": "^1.0.0",
+    "@nativescript/theme": "~2.2.1",
+    "@ng-bootstrap/ng-bootstrap": "^6.2.0",
+    "bootstrap": "^4.5.2",
+    "nativescript-angular": "~8.20.0",
+    "reflect-metadata": "~0.1.12",
+    "rxjs": "^6.5.5",
+    "tns-core-modules": "~6.3.0",
+    "tslib": "^1.13.0",
+    "zone.js": "~0.10.2"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^0.900.7",
+    "@angular/cli": "~9.0.4",
+    "@angular/compiler-cli": "~9.0.3",
+    "@angular/language-service": "~9.0.3",
+    "@nativescript/schematics": "~1.0.0",
+    "@nativescript/tslint-rules": "~0.0.5",
+    "@types/jasmine": "^3.5.14",
+    "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.12.58",
+    "codelyzer": "^5.2.2",
+    "jasmine-core": "~3.5.0",
+    "jasmine-spec-reporter": "~4.2.1",
+    "karma": "~4.3.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage-istanbul-reporter": "~2.1.0",
+    "karma-jasmine": "~2.0.1",
+    "karma-jasmine-html-reporter": "^1.5.4",
+    "nativescript-dev-webpack": "~1.4.0",
+    "protractor": "~5.4.3",
+    "ts-node": "~8.3.0",
+    "tslint": "~5.18.0",
+    "typescript": "~3.7.5"
+  },
+  "nativescript": {
+    "id": "org.nativescript.ngsample",
+    "tns-android": {
+      "version": "6.5.0"
+    }
+  }
+}
